@@ -44,6 +44,7 @@ export default class Clip {
     this.bucket = new Bucket(this.model);
   }
 
+  /*
   getRouter() {
     const router = PromiseRouter({ mergeParams: true });
 
@@ -64,6 +65,38 @@ export default class Clip {
         next();
       }
     );
+    */
+
+    getRouter() {
+      const router = PromiseRouter({ mergeParams: true });
+  
+      router.use(
+        ({ client_id, params }: Request, response: Response, next: NextFunction) => {
+          const { locale } = params;
+  
+          // Debugging: Log request parameters and client_id
+          console.log('Request Parameters:', params);
+          console.log('Client ID:', client_id);
+          console.log('Locale:', locale);
+  
+          if (client_id && locale) {
+            this.model.db
+              .saveActivity(client_id, locale)
+              .then(() => {
+                // Debugging: Log success message
+                console.log(`Activity saved for client_id: ${client_id}, locale: ${locale}`);
+              })
+              .catch((error: any) => {
+                // Debugging: Log error message
+                console.error('Activity save error:', error);
+              });
+          }
+  
+          next();
+        }
+      );
+  
+    }
 
     router.post('/:clipId/votes', this.saveClipVote);
     router.post('*', this.saveClip);
