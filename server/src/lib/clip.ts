@@ -56,11 +56,6 @@ export default class Clip {
       ) => {
         const { locale } = params;
 
-        // Debugging: Log request parameters and client_id
-        console.log('Request Parameters:', params);
-        console.log('Client ID:', client_id);
-        console.log('Locale:', locale);
-
         if (client_id && locale) {
           this.model.db
             .saveActivity(client_id, locale)
