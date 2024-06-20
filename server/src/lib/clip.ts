@@ -189,8 +189,8 @@ export default class Clip {
    */
   saveClip = async (request: Request, response: Response) => {
     const { headers } = request;
-    const client_id = headers['client-id'] as string;
-    const sentenceId = headers['sentence-id'] as string;
+    const client_id = headers['client_id'] as string;
+    const sentenceId = headers['sentence_id'] as string;
     const source = headers.source || 'unidentified';
     const format = headers['content-type'];
     const size = headers['content-length'];

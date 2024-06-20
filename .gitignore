@@ -34,3 +34,4 @@ nubis/builder/artifacts/*
 
 # WebStorm
 .idea/
+docker/Dockerfile.bak
