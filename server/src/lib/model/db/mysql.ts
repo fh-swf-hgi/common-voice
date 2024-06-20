@@ -54,6 +54,18 @@ export default class Mysql {
    */
   getMysqlOptions(): MysqlOptions {
     const config = getConfig();
+
+      // Debug prints
+      console.log('MySQL Config:');
+      console.log('User:', user);
+      console.log('Database:', database);
+      console.log('Password:', password); // Be careful with logging passwords in a production environment
+      console.log('Host:', host);
+      console.log('Port:', port);
+      console.log('Connect Timeout:', connectTimeout);
+      console.log('Multiple Statements:', multipleStatements);
+      console.log('Named Placeholders:', namedPlaceholders);
+
     return {
       user: getFirstDefined(config.MYSQLUSER, DEFAULTS.user),
       database: getFirstDefined(config.MYSQLDBNAME, DEFAULTS.database),
