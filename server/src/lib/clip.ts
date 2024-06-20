@@ -207,7 +207,7 @@ export default class Clip {
     console.log('Format:', format);
     console.log('Size:', size);
 
-    if (!sentenceId || !client_id) {
+    if (!sentenceId || !clientId) {
       this.clipSaveError(
         headers,
         response,
