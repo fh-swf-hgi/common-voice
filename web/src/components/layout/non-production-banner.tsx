@@ -8,6 +8,8 @@ import './non-production-banner.css';
 
 const NonProductionBanner = () => {
   const [hide, setHide] = useState(isProduction());
+  // hgi: Hide the banner even in development
+  return null;
 
   if (hide) {
     return null;
