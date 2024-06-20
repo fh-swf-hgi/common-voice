@@ -197,6 +197,9 @@ export default class Clip {
 
 
     // Print all parameters to the console
+
+    console.log('Request:', request);
+    console.log('Request end');
     console.log('Client ID:', client_id);
     console.log('Headers:', headers);
     console.log('Sentence ID:', sentenceId);
