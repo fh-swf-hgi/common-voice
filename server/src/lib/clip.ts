@@ -194,12 +194,12 @@ export default class Clip {
     const format = headers['content-type'];
     const size = headers['content-length'];
 
-    console.log('Client ID:', client_id);
-    console.log('Headers:', headers);
-    console.log('Sentence ID:', sentenceId);
-    console.log('Source:', source);
-    console.log('Format:', format);
-    console.log('Size:', size);
+    // console.log('Client ID:', client_id);
+    // console.log('Headers:', headers);
+    // console.log('Sentence ID:', sentenceId);
+    // console.log('Source:', source);
+    // console.log('Format:', format);
+    // console.log('Size:', size);
 
     if (!sentenceId || !client_id) {
       this.clipSaveError(
