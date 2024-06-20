@@ -188,18 +188,13 @@ export default class Clip {
    * to be easily parsed from other errors
    */
   saveClip = async (request: Request, response: Response) => {
-    const { headers } = request;
-    const client_id = headers['client_id'] as string;
-    const sentenceId = headers['sentence_id'] as string;
+    const { client_id, headers } = request;
+    const sentenceId = headers.sentence_id as string;
     const source = headers.source || 'unidentified';
     const format = headers['content-type'];
     const size = headers['content-length'];
 
 
-    // Print all parameters to the console
-
-    //console.log('Request:', request);
-    console.log('Request end');
     console.log('Client ID:', client_id);
     console.log('Headers:', headers);
     console.log('Sentence ID:', sentenceId);
@@ -214,6 +209,19 @@ export default class Clip {
         400,
         `missing parameter: ${sentenceId ? 'client_id' : 'sentence_id'}`,
         ERRORS.MISSING_PARAM,
+        'clip'
+      );
+      return;
+    }
+
+    const sentence = await this.model.db.findSentence(sentenceId);
+    if (!sentence) {
+      this.clipSaveError(
+        headers,
+        response,
+        422,
+        `sentence not found`,
+        ERRORS.SENTENCE_NOT_FOUND,
         'clip'
       );
       return;
