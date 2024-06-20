@@ -188,8 +188,8 @@ export default class Clip {
    * to be easily parsed from other errors
    */
   saveClip = async (request: Request, response: Response) => {
-    const { client_id, headers } = request;
-    //const sentenceId = headers.sentence_id as string;
+    const { headers } = request;
+    const clientId = headers['client-id'] as string;
     const sentenceId = headers['sentence-id'] as string;
     const source = headers.source || 'unidentified';
     const format = headers['content-type'];
@@ -198,9 +198,9 @@ export default class Clip {
 
     // Print all parameters to the console
 
-    console.log('Request:', request);
+    //console.log('Request:', request);
     console.log('Request end');
-    console.log('Client ID:', client_id);
+    console.log('Client ID:', clientId);
     console.log('Headers:', headers);
     console.log('Sentence ID:', sentenceId);
     console.log('Source:', source);
