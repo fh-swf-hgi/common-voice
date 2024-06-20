@@ -169,6 +169,7 @@ export default class Mysql {
   /**
    * Insert or update query generator.
    */
+  /*
   async upsert(
     tableName: string,
     columns: string[],
@@ -192,6 +193,34 @@ export default class Mysql {
       allValues
     );
   }
+  */
+ /**
+ * Insert or update query generator.
+ */
+  async upsert(
+    tableName: string,
+    columns: string[],
+    values: any[]
+  ): Promise<void> {
+    // Generate our bounded parameters.
+    const params = values.map(() => '?');
+    const dupeSql = columns.map(column => `${column} = ?`);
+
+    // We are using the same values twice in the query.
+    const allValues = values.concat(values);
+
+    // Generate the SQL query
+    const sql = `INSERT INTO ${tableName} (${columns.join(',')})
+                VALUES (${params.join(',')})
+                ON DUPLICATE KEY UPDATE ${dupeSql.join(',')};`;
+
+    // Debug prints
+    console.log('SQL Query:', sql);
+    console.log('Values:', allValues);
+
+    await this.query(sql, allValues);
+  }
+
 
   private getProcedureName(body: string): string {
     return 'F_' + hash(body, SALT);
