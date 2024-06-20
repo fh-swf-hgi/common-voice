@@ -194,7 +194,6 @@ export default class Clip {
     const format = headers['content-type'];
     const size = headers['content-length'];
 
-
     console.log('Client ID:', client_id);
     console.log('Headers:', headers);
     console.log('Sentence ID:', sentenceId);
@@ -209,19 +208,6 @@ export default class Clip {
         400,
         `missing parameter: ${sentenceId ? 'client_id' : 'sentence_id'}`,
         ERRORS.MISSING_PARAM,
-        'clip'
-      );
-      return;
-    }
-
-    const sentence = await this.model.db.findSentence(sentenceId);
-    if (!sentence) {
-      this.clipSaveError(
-        headers,
-        response,
-        422,
-        `sentence not found`,
-        ERRORS.SENTENCE_NOT_FOUND,
         'clip'
       );
       return;
