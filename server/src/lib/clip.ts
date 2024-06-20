@@ -189,7 +189,7 @@ export default class Clip {
    */
   saveClip = async (request: Request, response: Response) => {
     const { headers } = request;
-    const clientId = headers['client-id'] as string;
+    const client_id = headers['client-id'] as string;
     const sentenceId = headers['sentence-id'] as string;
     const source = headers.source || 'unidentified';
     const format = headers['content-type'];
@@ -200,7 +200,7 @@ export default class Clip {
 
     //console.log('Request:', request);
     console.log('Request end');
-    console.log('Client ID:', clientId);
+    console.log('Client ID:', client_id);
     console.log('Headers:', headers);
     console.log('Sentence ID:', sentenceId);
     console.log('Source:', source);
