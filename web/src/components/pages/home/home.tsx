@@ -167,9 +167,6 @@ export default function HomePage() {
         </section>
       )}
 
-      <section className="donate-banner-section">
-        <DonateBanner />
-      </section>
     </Page>
   );
 }
